@@ -19,3 +19,20 @@ def smooth_image(source_image):
         plt.savefig('../image/smooth.png')
     except Exception as e:
         print('Error: {}'.format(e))
+
+def sharp_image(source_image):
+    import cv2
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    try:
+        gray = cv2.cvtColor(source_image, cv2.COLOR_BGR2GRAY)
+
+        sharpening_mask = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
+        sharpening_out = cv2.filter2D(gray, -1, sharpening_mask)
+
+        plt.figure(figsize=(5, 4)), plt.axis('off')
+        plt.imshow(sharpening_out)
+        plt.savefig('../image/sharp.png')
+    except Exception as e:
+        print('Error: {}'.format(e))

@@ -20,6 +20,7 @@ class multimedia_processing_class(QMainWindow):
 
         self.btnBlur.clicked.connect(lambda: self.blur_image())
         self.btnSmooth.clicked.connect(lambda: self.smooth_image())
+        self.btnSharp.clicked.connect(lambda: self.sharp_image())
 
     def open_image(self):
         import imageIO as iio
@@ -73,6 +74,13 @@ class multimedia_processing_class(QMainWindow):
         ifil.smooth_image(self.source_image)
         smooth_img = imread('../image/smooth.png')
         self.show_image(self.lblImage_2, smooth_img)
+
+    def sharp_image(self):
+        import imageFilter as ifil
+        from skimage.io import imread
+        ifil.sharp_image(self.source_image)
+        sharp_img = imread('../image/sharp.png')
+        self.show_image(self.lblImage_2, sharp_img)
 
 def multi_processing_app():
     import sys
