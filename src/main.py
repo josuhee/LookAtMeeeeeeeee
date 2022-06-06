@@ -13,6 +13,7 @@ class multimedia_processing_class(QMainWindow):
         self.btnOpenimage.clicked.connect(lambda: self.open_image())
 
         self.btnShowhist.clicked.connect(lambda: self.show_histogram())
+        self.btnInvert.clicked.connect(lambda: self.invert_image())
 
     def open_image(self):
         import imageIO as iio
@@ -25,10 +26,19 @@ class multimedia_processing_class(QMainWindow):
 
     def show_histogram(self):
         import imageConvert01 as ic1
-        from skimage import io
+        from skimage import imread
         ic1.show_histogram(self.source_image)
-        hist_img = io.imread('hist.png')
+        hist_img = imread('hist.png')
         self.show_image(self.lblImage_2, hist_img)
+
+    def invert_image(self):
+        import imageConvert01 as ic1
+        from skimage.io import imread
+        a_max = float(self.txtAmax.toPlainText())
+        ic1.invert_image(self.source_image, a_max)
+        invert_img = imread('invert.png')
+        self.show_image(self.lblImage_2, invert_img)
+
 
 def multi_processing_app():
     import sys
