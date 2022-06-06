@@ -3,6 +3,7 @@
 # 201812433 Jo Suhee
 
 from PyQt5.QtWidgets import QMainWindow
+import image-IO as iio
 
 class multimedia_processing_class(QMainWindow):
     def __init__(self):
@@ -10,6 +11,8 @@ class multimedia_processing_class(QMainWindow):
         super(multimedia_processing_class, self).__init__()
         loadUi('../ui/final_project_app.ui', self)
         self.source_image = None
+        self.btnOpenimage.clicked.connect(lambda: iio.open_image(self.source_image))
+
 
 def multi_processing_app():
     import sys
