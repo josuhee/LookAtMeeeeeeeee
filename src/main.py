@@ -19,6 +19,7 @@ class multimedia_processing_class(QMainWindow):
         self.btnGamma.clicked.connect(lambda: self.enhance_by_gammacorrect())
 
         self.btnBlur.clicked.connect(lambda: self.blur_image())
+        self.btnSmooth.clicked.connect(lambda: self.smooth_image())
 
     def open_image(self):
         import imageIO as iio
@@ -65,6 +66,13 @@ class multimedia_processing_class(QMainWindow):
         ifil.blur_image(self.source_image, sigma)
         blur_img = imread('../image/blurImage.png')
         self.show_image(self.lblImage_2, blur_img)
+
+    def smooth_image(self):
+        import imageFilter as ifil
+        from skimage.io import imread
+        ifil.smooth_image(self.source_image)
+        smooth_img = imread('../image/smooth.png')
+        self.show_image(self.lblImage_2, smooth_img)
 
 def multi_processing_app():
     import sys
