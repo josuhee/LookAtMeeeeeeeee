@@ -12,6 +12,8 @@ class multimedia_processing_class(QMainWindow):
         self.source_image = None
         self.btnOpenimage.clicked.connect(lambda: self.open_image())
 
+        self.btnShowhist.clicked.connect(lambda: self.show_histogram())
+
     def open_image(self):
         import imageIO as iio
         self.source_image = iio.open_image(self.source_image)
@@ -20,6 +22,13 @@ class multimedia_processing_class(QMainWindow):
     def show_image(self, label, image):
         import imageIO as iio
         iio.show_image(label, image)
+
+    def show_histogram(self):
+        import imageConvert01 as ic1
+        from skimage import io
+        ic1.show_histogram(self.source_image)
+        hist_img = io.imread('hist.png')
+        self.show_image(self.lblImage_2, hist_img)
 
 def multi_processing_app():
     import sys
