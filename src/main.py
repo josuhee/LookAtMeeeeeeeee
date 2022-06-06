@@ -16,6 +16,7 @@ class multimedia_processing_class(QMainWindow):
         self.btnInvert.clicked.connect(lambda: self.invert_image())
 
         self.btnHistEqual.clicked.connect(lambda: self.enhance_by_histequal())
+        self.btnGamma.clicked.connect(lambda: self.enhance_by_gammacorrect())
 
     def open_image(self):
         import imageIO as iio
@@ -47,6 +48,13 @@ class multimedia_processing_class(QMainWindow):
         ie.enhance_by_histequal(self.source_image)
         histequal_img = imread('../image/enhance_hist_equal.png')
         self.show_image(self.lblImage_2, histequal_img)
+
+    def enhance_by_gammacorrect(self):
+        import imageEnhance as ie
+        from skimage.io import imread
+        ie.enhance_by_gammacorrect(self.source_image)
+        gammacorrect_img = imread('../image/enhance_gamma_correct.png')
+        self.show_image(self.lblImage_2, gammacorrect_img)
 
 def multi_processing_app():
     import sys
