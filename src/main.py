@@ -10,6 +10,16 @@ class multimedia_processing_class(QMainWindow):
         super(multimedia_processing_class, self).__init__()
         loadUi('../ui/final_project_app.ui', self)
         self.source_image = None
+        self.btnOpenimage.clicked.connect(lambda: self.open_image())
+
+    def open_image(self):
+        import imageIO as iio
+        self.source_image = iio.open_image(self.source_image)
+        self.show_image(self.lblImage_1, self.source_image)
+
+    def show_image(self, label, image):
+        import imageIO as iio
+        iio.show_image(label, image)
 
 def multi_processing_app():
     import sys
