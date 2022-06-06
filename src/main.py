@@ -15,6 +15,8 @@ class multimedia_processing_class(QMainWindow):
         self.btnShowhist.clicked.connect(lambda: self.show_histogram())
         self.btnInvert.clicked.connect(lambda: self.invert_image())
 
+        self.btnHistEqual.clicked.connect(lambda: self.enhance_by_histequal())
+
     def open_image(self):
         import imageIO as iio
         self.source_image = iio.open_image(self.source_image)
@@ -39,6 +41,12 @@ class multimedia_processing_class(QMainWindow):
         invert_img = imread('invert.png')
         self.show_image(self.lblImage_2, invert_img)
 
+    def enhance_by_histequal(self):
+        import imageEnhance as ie
+        from skimage.io import imread
+        ie.enhance_by_histequal(self.source_image)
+        histequal_img = imread('../image/enhance_hist_equal.png')
+        self.show_image(self.lblImage_2, histequal_img)
 
 def multi_processing_app():
     import sys
