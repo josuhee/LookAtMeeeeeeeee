@@ -3,12 +3,10 @@
 # 201812433 Jo Suhee
 
 from PyQt5.QtWidgets import QMainWindow
-from numpy import source
 
 class multimedia_processing_class(QMainWindow):
     def __init__(self):
         from PyQt5.uic import loadUi
-        import imageIO as iio
         super(multimedia_processing_class, self).__init__()
         loadUi('../ui/final_project_app.ui', self)
         self.source_image = None
