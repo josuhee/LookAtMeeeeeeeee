@@ -25,3 +25,7 @@ def save_toJPEG(source_image):
     io.imsave('../image/toJPEG.png', source_image)
     img = Image.open('../image/toJPEG.png').convert('RGB')
     img.save('../image/toJPEG.jpeg', 'jpeg')
+
+def save_toPNG(source_image):
+    from skimage import io
+    io.imsave('../image/toPNG.png', source_image)
