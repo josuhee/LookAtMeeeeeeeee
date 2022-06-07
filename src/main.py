@@ -22,6 +22,8 @@ class multimedia_processing_class(QMainWindow):
         self.btnSmooth.clicked.connect(lambda: self.smooth_image())
         self.btnSharp.clicked.connect(lambda: self.sharp_image())
 
+        self.btnRotate.clicked.connect(lambda: self.rotate_image())
+
     def open_image(self):
         import imageIO as iio
         self.source_image = iio.open_image(self.source_image)
@@ -81,6 +83,13 @@ class multimedia_processing_class(QMainWindow):
         ifil.sharp_image(self.source_image)
         sharp_img = imread('../image/sharp.png')
         self.show_image(self.lblImage_2, sharp_img)
+
+    def rotate_image(self):
+        import imageConvert02 as ic2
+        from skimage.io import imread
+        ic2.rotate_image(self.source_image)
+        rotate_img = imread('../image/rotate.png')
+        self.show_image(self.lblImage_2, rotate_img)
 
 def multi_processing_app():
     import sys
