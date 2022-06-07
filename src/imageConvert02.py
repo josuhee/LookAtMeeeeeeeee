@@ -60,3 +60,30 @@ def flip_image_top(source_image):
         plt.savefig('../image/flip_top_bottom.png')
     except Exception as e:
         print('Error: {}'.format(e))
+
+def warp_image_row(source_image):
+    import numpy as np
+    from skimage import io
+    import math
+    import matplotlib.pyplot as plt
+    from PIL import Image
+
+    try:
+        io.imsave('../image/warp_rows.png', source_image)
+        im = Image.open('../image/warp_rows.png').convert("L")
+        im = np.array(im)
+        rows, cols = im.shape[0], im.shape[1]
+        img_output = np.zeros((rows, cols))
+
+        for i in range(rows):
+            for j in range(cols):
+                offset_y = int(40.0 * math.sin(2 * 3.14 * j / 180))
+                if i + offset_y < rows:
+                    img_output[i, j] = im[(i + offset_y) % rows, j]
+                else:
+                    img_output[i, j] = 0
+
+        plt.imshow(img_output)
+        plt.savefig('../image/warp_rows.png')
+    except Exception as e:
+        print('Error: {}'.format(e))

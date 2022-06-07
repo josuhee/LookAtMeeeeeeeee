@@ -26,6 +26,7 @@ class multimedia_processing_class(QMainWindow):
         self.btnScaling.clicked.connect(lambda: self.scaling_image())
         self.btnFlipimage_left.clicked.connect(lambda: self.flip_image_left())
         self.btnFlipimage_top.clicked.connect(lambda: self.flip_image_top())
+        self.btnWarpimage_row.clicked.connect(lambda: self.warp_image_row())
 
     def open_image(self):
         import imageIO as iio
@@ -114,6 +115,13 @@ class multimedia_processing_class(QMainWindow):
         ic2.flip_image_top(self.source_image)
         flip_top_img = imread('../image/flip_top_bottom.png')
         self.show_image(self.lblImage_2, flip_top_img)
+
+    def warp_image_row(self):
+        import imageConvert02 as ic2
+        from skimage.io import imread
+        ic2.warp_image_row(self.source_image)
+        warp_row_img = imread('../image/warp_rows.png')
+        self.show_image(self.lblImage_2, warp_row_img)
 
 def multi_processing_app():
     import sys
