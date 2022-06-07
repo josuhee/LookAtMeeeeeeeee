@@ -12,6 +12,10 @@ class multimedia_processing_class(QMainWindow):
         self.source_image = None
         self.btnOpenimage.clicked.connect(lambda: self.open_image())
 
+        self.btnToJPEG.clicked.connect(lambda: self.save_toJPEG())
+        self.btnToPNG.clicked.connect(lambda: self.save_toPNG())
+        self.btnToBMP.clicked.connect(lambda: self.save_toBMP())
+
         self.btnShowhist.clicked.connect(lambda: self.show_histogram())
         self.btnInvert.clicked.connect(lambda: self.invert_image())
 
@@ -28,6 +32,7 @@ class multimedia_processing_class(QMainWindow):
         self.btnFlipimage_top.clicked.connect(lambda: self.flip_image_top())
         self.btnWarpimage_row.clicked.connect(lambda: self.warp_image_row())
         self.btnWarpimage_col.clicked.connect(lambda: self.warp_image_col())
+        self.btnCropimage.clicked.connect(lambda: self.crop_image())
 
     def open_image(self):
         import imageIO as iio
@@ -38,11 +43,32 @@ class multimedia_processing_class(QMainWindow):
         import imageIO as iio
         iio.show_image(label, image)
 
+    def save_toJPEG(self):
+        import imageIO as iio
+        from skimage.io import imread
+        iio.save_toJPEG(self.source_image)
+        jpeg_img = imread('../image/toJPEG.jpeg')
+        self.show_image(self.lblImage_2, jpeg_img)
+
+    def save_toPNG(self):
+        import imageIO as iio
+        from skimage.io import imread
+        iio.save_toPNG(self.source_image)
+        png_img = imread('../image/toPNG.png')
+        self.show_image(self.lblImage_2, png_img)
+
+    def save_toBMP(self):
+        import imageIO as iio
+        from skimage.io import imread
+        iio.save_toBMP(self.source_image)
+        bmp_img = imread('../image/toBMP.bmp')
+        self.show_image(self.lblImage_2, bmp_img)
+
     def show_histogram(self):
         import imageConvert01 as ic1
-        from skimage import imread
+        from skimage.io import imread
         ic1.show_histogram(self.source_image)
-        hist_img = imread('hist.png')
+        hist_img = imread('../image/hist.png')
         self.show_image(self.lblImage_2, hist_img)
 
     def invert_image(self):
@@ -50,7 +76,7 @@ class multimedia_processing_class(QMainWindow):
         from skimage.io import imread
         a_max = float(self.txtAmax.toPlainText())
         ic1.invert_image(self.source_image, a_max)
-        invert_img = imread('invert.png')
+        invert_img = imread('../image/invert.png')
         self.show_image(self.lblImage_2, invert_img)
 
     def enhance_by_histequal(self):
@@ -130,6 +156,13 @@ class multimedia_processing_class(QMainWindow):
         ic2.warp_image_col(self.source_image)
         warp_col_img = imread('../image/warp_cols.png')
         self.show_image(self.lblImage_2, warp_col_img)
+
+    def crop_image(self):
+        import imageConvert02 as ic2
+        from skimage.io import imread
+        ic2.crop_image(self.source_image)
+        crop_img = imread('../image/crop.png')
+        self.show_image(self.lblImage_2, crop_img)
 
 def multi_processing_app():
     import sys
