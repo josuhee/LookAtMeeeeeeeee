@@ -32,6 +32,7 @@ class multimedia_processing_class(QMainWindow):
         self.btnFlipimage_top.clicked.connect(lambda: self.flip_image_top())
         self.btnWarpimage_row.clicked.connect(lambda: self.warp_image_row())
         self.btnWarpimage_col.clicked.connect(lambda: self.warp_image_col())
+        self.btnCropimage.clicked.connect(lambda: self.crop_image())
 
     def open_image(self):
         import imageIO as iio
@@ -155,6 +156,13 @@ class multimedia_processing_class(QMainWindow):
         ic2.warp_image_col(self.source_image)
         warp_col_img = imread('../image/warp_cols.png')
         self.show_image(self.lblImage_2, warp_col_img)
+
+    def crop_image(self):
+        import imageConvert02 as ic2
+        from skimage.io import imread
+        ic2.crop_image(self.source_image)
+        crop_img = imread('../image/crop.png')
+        self.show_image(self.lblImage_2, crop_img)
 
 def multi_processing_app():
     import sys
