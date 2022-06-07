@@ -45,3 +45,18 @@ def flip_image_left(source_image):
         plt.savefig('../image/flip_left_right.png')
     except Exception as e:
         print('Error: {}'.format(e))
+
+def flip_image_top(source_image):
+    from PIL import Image
+    from skimage import io
+    import matplotlib.pyplot as plt
+    try:
+        io.imsave('../image/flip_top_bottom.png', source_image)
+        im = Image.open('../image/flip_top_bottom.png')
+
+        im_flip_top_bottom = im.transpose(Image.FLIP_TOP_BOTTOM)
+
+        plt.imshow(im_flip_top_bottom)
+        plt.savefig('../image/flip_top_bottom.png')
+    except Exception as e:
+        print('Error: {}'.format(e))
