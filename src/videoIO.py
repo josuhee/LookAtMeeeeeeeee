@@ -23,3 +23,20 @@ class VideoIO:
 				break
 		cap.release()
 		cv2.destroyAllWindows()
+
+	def connectwebcam(self, label):
+		import cv2
+		import imageIO as iio
+
+		self.stop_webcam = False
+
+		cap = cv2.VideoCapture(0)
+		while True:
+			ret, self.source_image = cap.read()
+			self.source_image = cv2.cvtColor(self.source_image, cv2.COLOR_BGR2RGB)
+			iio.show_image(label, self.source_image)
+			cv2.waitKey(24)
+			if self.stop_webcam:
+				break
+		cap.release()
+		cv2.destroyAllWindows()
