@@ -2,7 +2,7 @@ def show_histogram(source_image):
     from matplotlib import pyplot as plt
     plt.figure(figsize=(5, 4))
     plt.hist(source_image.ravel(), bins=256)
-    plt.savefig('hist.png')
+    plt.savefig('../image/hist.png')
 
 def invert_image(source_image, a_max):
     from skimage.color import rgb2gray
@@ -12,4 +12,4 @@ def invert_image(source_image, a_max):
 
     plt.figure(figsize=(5, 4)), plt.axis('off')
     plt.imshow(im_invert, cmap='gray', vmin=0, vmax=1)
-    plt.savefig('invert.png')
+    plt.savefig('../image/invert.png')

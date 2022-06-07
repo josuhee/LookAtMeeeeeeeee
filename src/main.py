@@ -33,9 +33,9 @@ class multimedia_processing_class(QMainWindow):
 
     def show_histogram(self):
         import imageConvert01 as ic1
-        from skimage import imread
+        from skimage.io import imread
         ic1.show_histogram(self.source_image)
-        hist_img = imread('hist.png')
+        hist_img = imread('../image/hist.png')
         self.show_image(self.lblImage_2, hist_img)
 
     def invert_image(self):
@@ -43,7 +43,7 @@ class multimedia_processing_class(QMainWindow):
         from skimage.io import imread
         a_max = float(self.txtAmax.toPlainText())
         ic1.invert_image(self.source_image, a_max)
-        invert_img = imread('invert.png')
+        invert_img = imread('../image/invert.png')
         self.show_image(self.lblImage_2, invert_img)
 
     def enhance_by_histequal(self):
