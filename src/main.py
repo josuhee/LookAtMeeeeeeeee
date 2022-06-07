@@ -23,6 +23,7 @@ class multimedia_processing_class(QMainWindow):
         self.btnSharp.clicked.connect(lambda: self.sharp_image())
 
         self.btnRotate.clicked.connect(lambda: self.rotate_image())
+        self.btnScaling.clicked.connect(lambda: self.scaling_image())
 
     def open_image(self):
         import imageIO as iio
@@ -90,6 +91,13 @@ class multimedia_processing_class(QMainWindow):
         ic2.rotate_image(self.source_image)
         rotate_img = imread('../image/rotate.png')
         self.show_image(self.lblImage_2, rotate_img)
+
+    def scaling_image(self):
+        import imageConvert02 as ic2
+        from skimage.io import imread
+        ic2.scaling_image(self.source_image)
+        scaling_img = imread('../image/scaling.png')
+        self.show_image(self.lblImage_2, scaling_img)
 
 def multi_processing_app():
     import sys
