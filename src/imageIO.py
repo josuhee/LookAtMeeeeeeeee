@@ -29,3 +29,10 @@ def save_toJPEG(source_image):
 def save_toPNG(source_image):
     from skimage import io
     io.imsave('../image/toPNG.png', source_image)
+
+def save_toBMP(source_image):
+    from PIL import Image
+    from skimage import io
+    io.imsave('../image/toBMP.png', source_image)
+    img = Image.open('../image/toBMP.png').convert('RGB')
+    img.save('../image/toBMP.bmp', 'bmp')
