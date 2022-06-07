@@ -40,3 +40,6 @@ class VideoIO:
 				break
 		cap.release()
 		cv2.destroyAllWindows()
+
+	def stopwebcam(self):
+		self.stop_webcam = True
