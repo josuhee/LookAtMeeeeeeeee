@@ -15,6 +15,13 @@ class multimedia_processing_class(QMainWindow):
         self.btnShowhist.clicked.connect(lambda: self.show_histogram())
         self.btnInvert.clicked.connect(lambda: self.invert_image())
 
+        self.btnHistEqual.clicked.connect(lambda: self.enhance_by_histequal())
+        self.btnGamma.clicked.connect(lambda: self.enhance_by_gammacorrect())
+
+        self.btnBlur.clicked.connect(lambda: self.blur_image())
+        self.btnSmooth.clicked.connect(lambda: self.smooth_image())
+        self.btnSharp.clicked.connect(lambda: self.sharp_image())
+
     def open_image(self):
         import imageIO as iio
         self.source_image = iio.open_image(self.source_image)
@@ -26,9 +33,9 @@ class multimedia_processing_class(QMainWindow):
 
     def show_histogram(self):
         import imageConvert01 as ic1
-        from skimage import imread
+        from skimage.io import imread
         ic1.show_histogram(self.source_image)
-        hist_img = imread('hist.png')
+        hist_img = imread('../image/hist.png')
         self.show_image(self.lblImage_2, hist_img)
 
     def invert_image(self):
@@ -36,9 +43,44 @@ class multimedia_processing_class(QMainWindow):
         from skimage.io import imread
         a_max = float(self.txtAmax.toPlainText())
         ic1.invert_image(self.source_image, a_max)
-        invert_img = imread('invert.png')
+        invert_img = imread('../image/invert.png')
         self.show_image(self.lblImage_2, invert_img)
 
+    def enhance_by_histequal(self):
+        import imageEnhance as ie
+        from skimage.io import imread
+        ie.enhance_by_histequal(self.source_image)
+        histequal_img = imread('../image/enhance_hist_equal.png')
+        self.show_image(self.lblImage_2, histequal_img)
+
+    def enhance_by_gammacorrect(self):
+        import imageEnhance as ie
+        from skimage.io import imread
+        ie.enhance_by_gammacorrect(self.source_image)
+        gammacorrect_img = imread('../image/enhance_gamma_correct.png')
+        self.show_image(self.lblImage_2, gammacorrect_img)
+
+    def blur_image(self):
+        import imageFilter as ifil
+        from skimage.io import imread
+        sigma = int(self.txtBlur.toPlainText())
+        ifil.blur_image(self.source_image, sigma)
+        blur_img = imread('../image/blurImage.png')
+        self.show_image(self.lblImage_2, blur_img)
+
+    def smooth_image(self):
+        import imageFilter as ifil
+        from skimage.io import imread
+        ifil.smooth_image(self.source_image)
+        smooth_img = imread('../image/smooth.png')
+        self.show_image(self.lblImage_2, smooth_img)
+
+    def sharp_image(self):
+        import imageFilter as ifil
+        from skimage.io import imread
+        ifil.sharp_image(self.source_image)
+        sharp_img = imread('../image/sharp.png')
+        self.show_image(self.lblImage_2, sharp_img)
 
 def multi_processing_app():
     import sys
