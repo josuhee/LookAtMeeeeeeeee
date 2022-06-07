@@ -114,3 +114,18 @@ def warp_image_col(source_image):
         plt.savefig('../image/warp_cols.png')
     except Exception as e:
         print('Error: {}'.format(e))
+
+def crop_image(source_image):
+    from PIL import Image
+    from skimage import io
+    import matplotlib.pyplot as plt
+
+    try:
+        io.imsave('../image/crop.png', source_image)
+        im = Image.open('../image/crop.png')
+        area = (100, 100, 200, 200)
+        img_output = im.crop(area)
+        plt.imshow(img_output)
+        plt.savefig('../image/crop.png')
+    except Exception as e:
+        print('Error: {}'.format(e))
