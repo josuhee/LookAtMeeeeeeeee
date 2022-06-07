@@ -12,6 +12,10 @@ class multimedia_processing_class(QMainWindow):
         self.source_image = None
         self.btnOpenimage.clicked.connect(lambda: self.open_image())
 
+        self.btnToJPEG.clicked.connect(lambda: self.save_toJPEG())
+        self.btnToPNG.clicked.connect(lambda: self.save_toPNG())
+        self.btnToBMP.clicked.connect(lambda: self.save_toBMP())
+
         self.btnShowhist.clicked.connect(lambda: self.show_histogram())
         self.btnInvert.clicked.connect(lambda: self.invert_image())
 
@@ -37,6 +41,27 @@ class multimedia_processing_class(QMainWindow):
     def show_image(self, label, image):
         import imageIO as iio
         iio.show_image(label, image)
+
+    def save_toJPEG(self):
+        import imageIO as iio
+        from skimage.io import imread
+        iio.save_toJPEG(self.source_image)
+        jpeg_img = imread('../image/toJPEG.jpeg')
+        self.show_image(self.lblImage_2, jpeg_img)
+
+    def save_toPNG(self):
+        import imageIO as iio
+        from skimage.io import imread
+        iio.save_toPNG(self.source_image)
+        png_img = imread('../image/toPNG.png')
+        self.show_image(self.lblImage_2, png_img)
+
+    def save_toBMP(self):
+        import imageIO as iio
+        from skimage.io import imread
+        iio.save_toBMP(self.source_image)
+        bmp_img = imread('../image/toBMP.bmp')
+        self.show_image(self.lblImage_2, bmp_img)
 
     def show_histogram(self):
         import imageConvert01 as ic1
