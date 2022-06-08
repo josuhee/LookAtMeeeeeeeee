@@ -40,6 +40,11 @@ class multimedia_processing_class(QMainWindow):
         self.btnOpenvideo.clicked.connect(lambda: self.open_video())
         self.btnConnectWebcam.clicked.connect(lambda: self.connectwebcam())
         self.btnStopWebcam.clicked.connect(lambda: self.stopwebcam())
+        self.btnVideoConvert.clicked.connect(lambda: self.convertGray())
+
+        self.btnVideoFlip_90.clicked.connect(lambda: self.rotate90())
+        self.btnVideoFlip_180.clicked.connect(lambda: self.rotate180())
+        self.btnVideoFlip_270.clicked.connect(lambda: self.rotate270())
 
     def open_image(self):
         import imageIO as iio
@@ -47,13 +52,25 @@ class multimedia_processing_class(QMainWindow):
         self.show_image(self.lblImage_1, self.source_image)
 
     def open_video(self):
-        self.video.openVideo(self.lblVideo_1)
+        self.video.openVideo(self.lblVideo_1, self.lblVideo_2)
 
     def connectwebcam(self):
-        self.video.connectwebcam(self.lblVideo_1)
+        self.video.connectwebcam(self.lblVideo_1, self.lblVideo_2)
 
     def stopwebcam(self):
         self.video.stopwebcam()
+
+    def convertGray(self):
+        self.video.convertGray()
+
+    def rotate90(self):
+        self.video.rotate90()
+
+    def rotate180(self):
+        self.video.rotate180()
+
+    def rotate270(self):
+        self.video.rotate270()
 
     def show_image(self, label, image):
         import imageIO as iio
