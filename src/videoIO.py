@@ -10,12 +10,15 @@ def show_video(label, image):
 
 class VideoIO:
 	def __init__(self):
+		import torch
 		self.source_image = None
 		self.stop_webcam = False
 		self.gray = False # Convert to grayscale
 		self.rotate1 = False # Rotate 90
 		self.rotate2 = False # Rotate 180
 		self.rotate3 = False # Rotate 270
+		self.detect = False # Detect
+		self.model = torch.hub.load('../yolov5/', 'custom', path='../yolov5/runs/train/exp/weights/best.pt', source='local',  _verbose=False)  # local repo
 
 	def openVideo(self, label1, label2):
 		import cv2
@@ -27,6 +30,7 @@ class VideoIO:
 		self.rotate1 = False
 		self.rotate2 = False
 		self.rotate3 = False
+		self.detect = False # Detect
 		fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None,
 														'Open File',
 														QtCore.QDir.rootPath(),
@@ -44,6 +48,8 @@ class VideoIO:
 				vc.flip180(label2, self.source_image)
 			if self.rotate3:
 				vc.flip270(label2, self.source_image)
+			if self.detect:
+				vc.detectBicycle(label2, self.source_image, self.model)
 			cv2.waitKey(24)
 			if self.stop_webcam:
 				break
@@ -59,6 +65,7 @@ class VideoIO:
 		self.rotate1 = False
 		self.rotate2 = False
 		self.rotate3 = False
+		self.detect = False
 
 		cap = cv2.VideoCapture(0)
 		while True:
@@ -87,21 +94,32 @@ class VideoIO:
 		self.rotate1 = False
 		self.rotate2 = False
 		self.rotate3 = False
+		self.detect = False
 
 	def rotate90(self):
 		self.rotate1 = True
 		self.gray = False
 		self.rotate2 = False
 		self.rotate3 = False
+		self.detect = False
 
 	def rotate180(self):
 		self.rotate2 = True
 		self.gray = False
 		self.rotate1 = False
 		self.rotate3 = False
+		self.detect = False
 
 	def rotate270(self):
 		self.rotate3 = True
 		self.gray = False
 		self.rotate1 = False
 		self.rotate2 = False
+		self.detect = False
+
+	def detectBicycle(self):
+		self.detect = True
+		self.gray = False
+		self.rotate1 = False
+		self.rotate2 = False
+		self.rotate3 = False

@@ -46,6 +46,8 @@ class multimedia_processing_class(QMainWindow):
         self.btnVideoFlip_180.clicked.connect(lambda: self.rotate180())
         self.btnVideoFlip_270.clicked.connect(lambda: self.rotate270())
 
+        self.btnCountBicycle.clicked.connect(lambda: self.detectBicycle())
+
     def open_image(self):
         import imageIO as iio
         self.source_image = iio.open_image(self.source_image)
@@ -71,6 +73,9 @@ class multimedia_processing_class(QMainWindow):
 
     def rotate270(self):
         self.video.rotate270()
+
+    def detectBicycle(self):
+        self.video.detectBicycle()
 
     def show_image(self, label, image):
         import imageIO as iio
