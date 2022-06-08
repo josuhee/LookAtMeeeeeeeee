@@ -42,6 +42,8 @@ class multimedia_processing_class(QMainWindow):
         self.btnStopWebcam.clicked.connect(lambda: self.stopwebcam())
         self.btnVideoConvert.clicked.connect(lambda: self.convertGray())
 
+        self.btnVideoFlip_90.clicked.connect(lambda: self.rotate90())
+
     def open_image(self):
         import imageIO as iio
         self.source_image = iio.open_image(self.source_image)
@@ -58,6 +60,9 @@ class multimedia_processing_class(QMainWindow):
 
     def convertGray(self):
         self.video.convertGray()
+
+    def rotate90(self):
+        self.video.rotate90()
 
     def show_image(self, label, image):
         import imageIO as iio
