@@ -14,3 +14,10 @@ def flip90(label, source_image):
 
 	im_rotated = cv2.rotate(source_image, cv2.ROTATE_90_CLOCKWISE)
 	iio.show_image(label, im_rotated)
+
+def flip180(label, source_image):
+	import imageIO as iio
+	import cv2
+
+	im_rotated = cv2.rotate(source_image, cv2.ROTATE_180)
+	iio.show_image(label, im_rotated)

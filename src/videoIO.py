@@ -4,6 +4,7 @@ class VideoIO:
 		self.stop_webcam = False
 		self.gray = False
 		self.rotate1 = False
+		self.rotate2 = False
 	
 	def openVideo(self, label1, label2):
 		import cv2
@@ -13,6 +14,8 @@ class VideoIO:
 
 		self.stop_webcam = False
 		self.gray = False
+		self.rotate1 = False
+		self.rotate2 = False
 		fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None,
 														'Open File',
 														QtCore.QDir.rootPath(),
@@ -24,6 +27,10 @@ class VideoIO:
 			iio.show_image(label1, self.source_image)
 			if self.gray:
 				vc.graySacle(label2, self.source_image)
+			if self.rotate1:
+				vc.flip90(label2, self.source_image)
+			if self.rotate2:
+				vc.flip180(label2, self.source_image)
 			cv2.waitKey(24)
 			if self.stop_webcam:
 				break
@@ -38,6 +45,7 @@ class VideoIO:
 		self.stop_webcam = False
 		self.gray = False
 		self.rotate1 = False
+		self.rotate2 = False
 
 		cap = cv2.VideoCapture(0)
 		while True:
@@ -48,6 +56,8 @@ class VideoIO:
 				vc.graySacle(label2, self.source_image)
 			if self.rotate1:
 				vc.flip90(label2, self.source_image)
+			if self.rotate2:
+				vc.flip180(label2, self.source_image)
 			cv2.waitKey(24)
 			if self.stop_webcam:
 				break
@@ -62,3 +72,6 @@ class VideoIO:
 
 	def rotate90(self):
 		self.rotate1 = True
+
+	def rotate180(self):
+		self.rotate2 = True
