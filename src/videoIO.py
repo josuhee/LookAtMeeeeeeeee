@@ -3,6 +3,7 @@ class VideoIO:
 		self.source_image = None
 		self.stop_webcam = False
 		self.gray = False
+		self.rotate1 = False
 	
 	def openVideo(self, label1, label2):
 		import cv2
@@ -36,6 +37,7 @@ class VideoIO:
 
 		self.stop_webcam = False
 		self.gray = False
+		self.rotate1 = False
 
 		cap = cv2.VideoCapture(0)
 		while True:
@@ -44,6 +46,8 @@ class VideoIO:
 			iio.show_image(label1, self.source_image)
 			if self.gray:
 				vc.graySacle(label2, self.source_image)
+			if self.rotate1:
+				vc.flip90(label2, self.source_image)
 			cv2.waitKey(24)
 			if self.stop_webcam:
 				break
@@ -55,3 +59,6 @@ class VideoIO:
 
 	def convertGray(self):
 		self.gray = True
+
+	def rotate90(self):
+		self.rotate1 = True
