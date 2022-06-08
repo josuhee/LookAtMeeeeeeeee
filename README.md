@@ -1,4 +1,4 @@
-# NaBoJaGooooo
+# LookAtMeeeeeeeee
 Multimedia processing Technique: Final Team Project
 
 ### ✔ Collaborators
