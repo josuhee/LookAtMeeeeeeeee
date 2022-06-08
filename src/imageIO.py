@@ -18,3 +18,21 @@ def show_image(label, image):
     image = qimage2ndarray.array2qimage(image)
     qpixmp = QtGui.QPixmap.fromImage(image)
     label.setPixmap(qpixmp)
+
+def save_toJPEG(source_image):
+    from PIL import Image
+    from skimage import io
+    io.imsave('../image/toJPEG.png', source_image)
+    img = Image.open('../image/toJPEG.png').convert('RGB')
+    img.save('../image/toJPEG.jpeg', 'jpeg')
+
+def save_toPNG(source_image):
+    from skimage import io
+    io.imsave('../image/toPNG.png', source_image)
+
+def save_toBMP(source_image):
+    from PIL import Image
+    from skimage import io
+    io.imsave('../image/toBMP.png', source_image)
+    img = Image.open('../image/toBMP.png').convert('RGB')
+    img.save('../image/toBMP.bmp', 'bmp')
