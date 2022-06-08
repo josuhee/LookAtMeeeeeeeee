@@ -1,0 +1,5 @@
+names:
+- Bicycle
+nc: 1
+train: MPT-1/train/images
+val: MPT-1/valid/images
