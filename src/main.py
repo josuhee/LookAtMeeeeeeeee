@@ -21,6 +21,7 @@ class multimedia_processing_class(QMainWindow):
 
         self.btnShowhist.clicked.connect(lambda: self.show_histogram())
         self.btnInvert.clicked.connect(lambda: self.invert_image())
+        self.btnConvertGray.clicked.connect(lambda: self.convert_grayscale())
 
         self.btnHistEqual.clicked.connect(lambda: self.enhance_by_histequal())
         self.btnGamma.clicked.connect(lambda: self.enhance_by_gammacorrect())
@@ -111,6 +112,13 @@ class multimedia_processing_class(QMainWindow):
         ic1.invert_image(self.source_image, a_max)
         invert_img = imread('../image/invert.png')
         self.show_image(self.lblImage_2, invert_img)
+
+    def convert_grayscale(self):
+        import imageConvert01 as ic1
+        from skimage.io import imread
+        ic1.convert_grayscale(self.source_image)
+        gray_img = imread('../image/gray.png')
+        self.show_image(self.lblImage_2, gray_img)
 
     def enhance_by_histequal(self):
         import imageEnhance as ie
