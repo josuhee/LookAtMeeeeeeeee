@@ -55,7 +55,7 @@ class multimedia_processing_class(QMainWindow):
         self.show_image(self.lblImage_1, self.source_image)
 
     def open_video(self):
-        self.video.openVideo(self.lblVideo_1, self.lblVideo_2)
+        self.video.openVideo(self.lblVideo_1, self.lblVideo_2, self.lblBicycleNum)
 
     def connectwebcam(self):
         self.video.connectwebcam(self.lblVideo_1, self.lblVideo_2)
