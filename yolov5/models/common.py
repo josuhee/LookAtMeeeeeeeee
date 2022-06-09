@@ -662,11 +662,12 @@ class Detections:
             else:
                 s += '(no detections)'
 
+            if show:
+                #im.show(self.files[i])  # show
+                return im
             im = Image.fromarray(im.astype(np.uint8)) if isinstance(im, np.ndarray) else im  # from np
             if pprint:
                 print(s.rstrip(', '))
-            if show:
-                im.show(self.files[i])  # show
             if save:
                 f = self.files[i]
                 im.save(save_dir / f)  # save
@@ -684,7 +685,7 @@ class Detections:
         print(f'Speed: %.1fms pre-process, %.1fms inference, %.1fms NMS per image at shape {tuple(self.s)}' % self.t)
 
     def show(self, labels=True):
-        self.display(show=True, labels=labels)  # show results
+        return self.display(show=True, labels=labels)  # show results
 
     def save(self, labels=True, save_dir='runs/detect/exp'):
         save_dir = increment_path(save_dir, exist_ok=save_dir != 'runs/detect/exp', mkdir=True)  # increment save_dir
