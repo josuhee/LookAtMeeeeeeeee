@@ -26,9 +26,10 @@ def flip270(label, source_image):
 	im_rotated = cv2.rotate(source_image, cv2.ROTATE_90_COUNTERCLOCKWISE)
 	vio.show_video(label, im_rotated)
 
-def detectBicycle(label, source_image, model):
+def detectBicycle(label1, label2, source_image, model):
 	import videoIO as vio
 
 	results = model(source_image)
-	detect_image = results.show()
-	vio.show_video(label, detect_image)
+	detect_image, cnt = results.show()
+	label2.setText(str(cnt))
+	vio.show_video(label1, detect_image)
