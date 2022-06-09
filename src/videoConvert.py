@@ -28,9 +28,7 @@ def flip270(label, source_image):
 
 def detectBicycle(label, source_image, model):
 	import videoIO as vio
-	from skimage import io
 
 	results = model(source_image)
-	results.save('../image/detect_img.jpg','jpg')
-	detect_image = io.imread('jpg/image0.jpg')
+	detect_image = results.show()
 	vio.show_video(label, detect_image)
