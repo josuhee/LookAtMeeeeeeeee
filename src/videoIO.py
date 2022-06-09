@@ -20,7 +20,7 @@ class VideoIO:
 		self.detect = False # Detect
 		self.model = torch.hub.load('../yolov5/', 'custom', path='../yolov5/runs/train/exp/weights/best.pt', source='local',  _verbose=False)  # local repo
 
-	def openVideo(self, label1, label2):
+	def openVideo(self, label1, label2, label3):
 		import cv2
 		import videoConvert as vc
 		from PyQt5 import QtWidgets, QtCore
@@ -49,7 +49,7 @@ class VideoIO:
 			if self.rotate3:
 				vc.flip270(label2, self.source_image)
 			if self.detect:
-				vc.detectBicycle(label2, self.source_image, self.model)
+				vc.detectBicycle(label2, label3, self.source_image, self.model)
 			cv2.waitKey(24)
 			if self.stop_webcam:
 				break

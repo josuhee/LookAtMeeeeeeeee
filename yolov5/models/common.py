@@ -638,6 +638,7 @@ class Detections:
 
     def display(self, pprint=False, show=False, save=False, crop=False, render=False, labels=True, save_dir=Path('')):
         crops = []
+        cnt = 0
         for i, (im, pred) in enumerate(zip(self.imgs, self.pred)):
             s = f'image {i + 1}/{len(self.pred)}: {im.shape[0]}x{im.shape[1]} '  # string
             if pred.shape[0]:
@@ -658,13 +659,14 @@ class Detections:
                                 'im': save_one_box(box, im, file=file, save=save)})
                         else:  # all others
                             annotator.box_label(box, label if labels else '', color=colors(cls))
+                            cnt += 1
                     im = annotator.im
             else:
                 s += '(no detections)'
 
             if show:
                 #im.show(self.files[i])  # show
-                return im
+                return im, cnt
             im = Image.fromarray(im.astype(np.uint8)) if isinstance(im, np.ndarray) else im  # from np
             if pprint:
                 print(s.rstrip(', '))
