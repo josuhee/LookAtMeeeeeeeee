@@ -50,7 +50,7 @@ class VideoIO:
 				vc.flip270(label2, self.source_image)
 			if self.detect:
 				vc.detectBicycle(label2, label3, self.source_image, self.model)
-			cv2.waitKey(24)
+			cv2.waitKey(1)
 			if self.stop_webcam:
 				break
 		cap.release()
